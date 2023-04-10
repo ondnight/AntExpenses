@@ -134,8 +134,23 @@ class TicketController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        dd('borrando ticket');
+        $ticket = Ticket::find($id);
+
+        //borramos la foto
+
+        $ticketDeleted = 'uploads/'.$ticket->foto;
+
+        unlink($ticketDeleted);
+
+        //borramos el registro completo en la bbdd
+
+        $ticket->delete();
+
+        session()->flash('mensaje','¡Ticket eliminado correctamente!');
+
+        return redirect()->route('tickets.index',['user' =>auth()->user()->usuario]);
+
     }
 }

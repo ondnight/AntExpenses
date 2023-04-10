@@ -40,7 +40,7 @@ Route::get('/tickets/create',[TicketController::class,'create'])->name('tickets.
 Route::post('/tickets',[TicketController::class,'store'])->name('tickets.store');
 Route::get('/tickets/edit/{ticket:id}',[TicketController::class,'edit'])->name('tickets.edit');
 Route::put('/tickets/edit/{ticket:id}',[TicketController::class,'update'])->name('tickets.update');
-Route::delete('/tickets/borrar',[TicketController::class, 'destroy'])->name('tickets.destroy');
+Route::delete('/tickets/borrar/{ticket:id}',[TicketController::class, 'destroy'])->name('tickets.destroy');
 
 Route::get('/informes',[InformeController::class,'index'])->name('informes.index');//listado de informes
 Route::post('/informes/create',[InformeController::class,'store'])->name('informes.create');//formulario para crear informes

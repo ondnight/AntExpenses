@@ -37,6 +37,8 @@ class RegisterController extends Controller
         //autenticacion de usuario
         auth()->attempt($request->only('email','password'));
 
+        session()->flash('mensaje','¡Usuario Registrado Correctamente!');
+
         //redireccionamos despues de crear el usuario
 
 
