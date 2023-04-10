@@ -121,7 +121,7 @@
     </main>
     <footer class="text-center p-5 text-gray-500 font-bold mt-10">
 
-        Ant Expenses - Todos los derechos reservados {{ now()->year }}
+        Ant Expenses - Creado por Bruno Chandnani - Todos los derechos reservados {{ now()->year }}
         <!--esto es helper de laravel-->
 
     </footer>

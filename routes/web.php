@@ -36,6 +36,7 @@ Route::post('/login',[LoginController::class,'store'])->name('login'); //ruta pa
 Route::post('/logout',[LogoutController::class,'store'])->name('logout'); //ruta para cerrar sesión. Usamos post para dar seguridad con csrf
 
 Route::get('/{user:usuario}/tickets/',[TicketController::class,'index'])->name('tickets.index');//listado de tickets
+Route::get('/{user:usuario}/informed/',[TicketController::class,'informed'])->name('tickets.informed');
 Route::get('/tickets/create',[TicketController::class,'create'])->name('tickets.create');//formulario para crear ticket
 Route::post('/tickets',[TicketController::class,'store'])->name('tickets.store');
 Route::get('/tickets/edit/{ticket:id}',[TicketController::class,'edit'])->name('tickets.edit');

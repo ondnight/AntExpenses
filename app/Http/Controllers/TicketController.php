@@ -153,4 +153,20 @@ class TicketController extends Controller
         return redirect()->route('tickets.index',['user' =>auth()->user()->usuario]);
 
     }
+
+    public function informed(User $user)
+    {
+        $listadoTickets = Ticket::where('estado','=','Enviado')->get();
+
+        
+        return view(
+            'tickets.informed',
+            [
+                'user' => $user,
+                'listadoTickets' => $listadoTickets
+            ]
+        );
+
+
+    }
 }

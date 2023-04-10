@@ -11,7 +11,7 @@
 
         <nav class="flex gap-4 items-center ml-4 mb-4">
             <a href="{{ route('tickets.create') }}"
-                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-gray-600 
+                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -19,8 +19,16 @@
                         d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                 </svg>
                 Nuevo Ticket</a>
+                <a href="{{ route('tickets.informed',['user' => auth()->user()->usuario]) }}"
+                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+            rounded text-sm uppercase font-bold cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+              </svg>
+              
+                Tickets Informados</a>
             <a href="{{ route('posts.index', ['user' => auth()->user()->usuario]) }}"
-                class="flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-gray-600 
+                class="flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
