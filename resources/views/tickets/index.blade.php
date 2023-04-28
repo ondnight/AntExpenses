@@ -19,13 +19,15 @@
                         d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                 </svg>
                 Nuevo Ticket</a>
-                <a href="{{ route('tickets.informed',['user' => auth()->user()->usuario]) }}"
+            <a href="{{ route('tickets.informed', ['user' => auth()->user()->usuario]) }}"
                 class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
-              </svg>
-              
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
+                </svg>
+
                 Tickets Informados</a>
             <a href="{{ route('posts.index', ['user' => auth()->user()->usuario]) }}"
                 class="flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
@@ -56,7 +58,10 @@
                         <td class="px-6 py-4">{{ $item->id }}</td>
                         <td class="px-6 py-4">{{ $item->nombre }}</td>
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
-                        <td class="px-6 py-4">{{ $item->foto }}</td>
+                        <td class="px-6 py-4">
+                            <img class="imagen" style="cursor:pointer" onclick="abreModalImagen(this)" width="50px" height="50px"
+                                src="{{ asset('uploads/' . $item->foto) }}" alt="foto">
+                        </td>
                         <td class="px-6 py-4">{{ $item->tipoGasto->nombre }}</td>
                         <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                         <td class="px-6 py-4">{{ $item->estado }}</td>
@@ -95,5 +100,65 @@
             </tbody>
         </table>
 
+        <!-- Modal ampliación imagen-->
+       
+        <div id="modalImagen" tabindex="-1"
+            class="modal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                            Ticket
+                        </h3>
+                        <button type="button" onclick="cierraModalImagen()"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="modalImagen">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="cerrar">Cerrar</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div>
+                        <img id="miImagenModal" src="" alt="" width="350px" height="350px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
+
+    <script>
+        let modal = document.getElementById("modalImagen");
+
+        //funcion para abrir la modal
+        function abreModalImagen(elementoImg) {
+            let imagenModal = document.getElementById("miImagenModal");
+            imagenModal.src = elementoImg.src;
+            modal.style.display = 'block';
+        }
+
+        // función para cerrar la modal
+        function cierraModalImagen() {
+
+            modal.style.display = "none";
+        }
+
+
+        // si el usuario hace click en cualquier lugar cierra la modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 @endsection
