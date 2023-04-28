@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class PerfilController extends Controller
@@ -22,7 +23,7 @@ class PerfilController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
         
         //Validaciones en el formulario
@@ -49,6 +50,46 @@ class PerfilController extends Controller
 
        
         return redirect()->route('posts.index',['user' =>auth()->user()->usuario]);
+    }
+
+    public function changePassword(User $user)
+    {
+        return view('perfil.changepass',[
+            'user' => $user
+        ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // validaciones del formulario
+        
+        $this->validate($request,[
+            'oldPassword' => ['required'],
+            'newPassword' => ['required','min:6'],
+            'password_confirmation' => ['required','min:6']
+            
+        ]);
+
+        //controlamos si el usuario ha introducido su anterior password correctamente
+        
+        
+        $usuario = auth()->user();
+        
+        
+        if(Hash::check($request->oldPassword,$usuario->password)){
+            $usuario->password = Hash::make($request->newPassword); //aqui hay un error, buscar
+
+            $usuario->save();
+            return redirect()->back()->with('success', 'Contraseña cambiada correctamente');
+        }
+        else{
+            return redirect()->back()->with('error', 'La contraseña anterior no es correcta');
+        }
+        
+      
+        
+       //return redirect()->route('posts.index',['user' =>auth()->user()->usuario]);
+
     }
   
 }

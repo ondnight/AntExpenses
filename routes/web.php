@@ -49,4 +49,7 @@ Route::post('/informes/create',[InformeController::class,'store'])->name('inform
 Route::get('/{user:usuario}', [PostController::class, 'index'])->name('posts.index'); // redireccion al dashboard
 
 Route::get('/perfil/{user:usuario}', [PerfilController::class, 'index'])->name('perfil.index');
-Route::post('/perfil/{user:usuario}', [PerfilController::class, 'store'])->name('perfil.store');
+Route::put('/perfil/{user:usuario}', [PerfilController::class, 'update'])->name('perfil.update');
+Route::get('/perfil/changepass/{user:usuario}',[PerfilController::class, 'changePassword'])->name('perfil.changePassword');
+Route::post('/perfil/updatepass/{user:usuario}',[PerfilController::class, 'updatePassword'])->name('perfil.updatePassword');
+

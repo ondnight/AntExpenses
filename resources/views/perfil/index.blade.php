@@ -10,7 +10,8 @@
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
             <form class="mb-5" action="/perfil/{{auth()->user()->usuario }}" method="post">
                 @csrf
-           
+                @method('put')
+                
 
                 <!-- prevención de ataques cross site request forgery -->
 
