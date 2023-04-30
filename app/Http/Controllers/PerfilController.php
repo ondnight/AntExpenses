@@ -87,11 +87,6 @@ class PerfilController extends Controller
             return redirect()->route('perfil.changePassword', ['user' => auth()->user()->usuario]);
         }
 
-
-
-
-        //
-
     }
 
 }
