@@ -59,8 +59,8 @@
                         <td class="px-6 py-4">{{ $item->nombre }}</td>
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
                         <td class="px-6 py-4">
-                            <img class="imagen" style="cursor:pointer" onclick="abreModalImagen(this)" width="50px" height="50px"
-                                src="{{ asset('uploads/' . $item->foto) }}" alt="foto">
+                            <img class="imagen" style="cursor:pointer" onclick="abreModalImagen(this)" width="50px"
+                                height="50px" src="{{ asset('uploads/' . $item->foto) }}" alt="foto">
                         </td>
                         <td class="px-6 py-4">{{ $item->tipoGasto->nombre }}</td>
                         <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
@@ -77,7 +77,7 @@
 
 
                             </a>
-                            <form action="{{ route('tickets.destroy', $item->id) }}" method="post">
+                            <form action="{{ route('tickets.destroy', $item->id) }}"  id="eliminarTicket" method="post">
 
                                 @method('delete')
                                 @csrf
@@ -90,7 +90,6 @@
 
                                 </button>
 
-
                             </form>
 
                         </td>
@@ -101,7 +100,7 @@
         </table>
 
         <!-- Modal ampliación imagen-->
-       
+
         <div id="modalImagen" tabindex="-1"
             class="modal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
@@ -132,11 +131,11 @@
             </div>
         </div>
 
-
-
     </div>
 
     <script>
+        //Ventana modal para ampliar la imagen del ticket
+
         let modal = document.getElementById("modalImagen");
 
         //funcion para abrir la modal
@@ -159,6 +158,40 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+
+    <script type="text/javascript">
+
+        //Ventana modal para confirmación de eliminar ticket
+
+        document.getElementById("eliminarTicket").addEventListener('click', function(e) {
+            
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "!Esta acción es irreversible!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, bórralo!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    /*
+                    Swal.fire(
+                        
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )*/
+                    this.submit();
+                        
+                }
+            })
+
+        })
+
     </script>
 
 @endsection

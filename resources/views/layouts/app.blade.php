@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('styles') <!-- esto nos permite agregar estilos solo en algunas hojas con el helper push-->
-    <link rel="stylesheet" href="{{ asset('resources/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Ant Expenses</title>
     
 
@@ -130,6 +131,8 @@
         <!--esto es helper de laravel-->
 
     </footer>
+
+    
 </body>
 
 </html>
