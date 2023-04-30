@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('styles') <!-- esto nos permite agregar estilos solo en algunas hojas con el helper push-->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/css/app.css') }}">
     <title>Ant Expenses</title>
-    <script src="{{ asset('js/app.js') }} defer"></script>
+    
 
 
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+
 </head>
 
 <body class="bg-gray-100">
@@ -106,6 +106,11 @@
             @if(session('mensaje'))
             <div class=" text-center p-6 rounded text-sm uppercase font-bold text-green-600">
                 {{ session('mensaje') }}
+            </div>
+            @endif
+            @if(session('mensajeError'))
+            <div class=" text-center p-6 rounded text-sm uppercase font-bold text-red-600">
+                {{ session('mensajeError') }}
             </div>
             @endif
             <div>
