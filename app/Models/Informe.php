@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Informe extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'fecha',
+        'estado',
+        'user_id',
+        'importe',
+    ];
 }

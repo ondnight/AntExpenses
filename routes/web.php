@@ -43,9 +43,11 @@ Route::get('/tickets/edit/{ticket:id}',[TicketController::class,'edit'])->name('
 Route::put('/tickets/edit/{ticket:id}',[TicketController::class,'update'])->name('tickets.update');
 Route::delete('/tickets/borrar/{ticket:id}',[TicketController::class, 'destroy'])->name('tickets.destroy');
 
-Route::get('/informes',[InformeController::class,'index'])->name('informes.index');//listado de informes
-Route::post('/informes/create',[InformeController::class,'store'])->name('informes.create');//formulario para crear informes
-
+Route::get('/{user:usuario}/informes/',[InformeController::class,'index'])->name('informes.index');//listado de informes
+Route::get('/informes/create',[InformeController::class,'create'])->name('informes.create');//formulario para crear informes
+Route::post('/informes',[InformeController::class,'store'])->name('informes.store');
+Route::get('/informes/edit/{informe:id}',[InformeController::class,'edit'])->name('informes.edit');
+Route::get('/{user:usuario}/sent',[InformeController::class,'sent'])->name('informes.sent'); // listado informes enviados
 Route::get('/{user:usuario}', [PostController::class, 'index'])->name('posts.index'); // redireccion al dashboard
 
 Route::get('/perfil/{user:usuario}', [PerfilController::class, 'index'])->name('perfil.index');

@@ -158,6 +158,7 @@
                 modal.style.display = "none";
             }
         }
+        
     </script>
 
     <script type="text/javascript">
@@ -178,13 +179,7 @@
                 confirmButtonText: 'Si, bórralo!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    /*
-                    Swal.fire(
-                        
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )*/
+        
                     this.submit();
                         
                 }
