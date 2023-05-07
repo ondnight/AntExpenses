@@ -41,7 +41,7 @@
                         <td class="px-6 py-4">{{ $item->nombre }}</td>
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
                         <td class="px-6 py-4">
-                            <img class="imagen" style="cursor:pointer" onclick="abreModalImagen(this)" width="50px" height="50px"
+                            <img class="imagen" style="cursor:pointer" onclick="abreModalImagen(this)" width="25px" height="25px"
                                 src="{{ asset('uploads/' . $item->foto) }}" alt="foto">
                         </td>
                         <td class="px-6 py-4">{{ $item->tipoGasto->nombre }}</td>

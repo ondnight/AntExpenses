@@ -25,6 +25,14 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'user_id');
+    }
+
+   
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

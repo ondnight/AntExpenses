@@ -16,4 +16,19 @@ class Informe extends Model
         'user_id',
         'importe',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function detalleInforme()
+    {
+        return $this->belongsTo(detalleInforme::class, 'informes_id');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'tickets_id');
+    }
 }

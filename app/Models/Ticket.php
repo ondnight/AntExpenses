@@ -14,7 +14,6 @@ class Ticket extends Model
         'nombre',
         'fecha',
         'tipogastos_id',
-        'informes_id',
         'user_id',
         'foto',
         'importe',
@@ -24,7 +23,11 @@ class Ticket extends Model
     public function tipoGasto()
     {
         //relacion de tabla ticket y tipo de gastos
-        return $this->belongsTo(Tipogasto::class,'tipogastos_id');
+        return $this->belongsTo(Tipogasto::class, 'tipogastos_id');
     }
+
     
+
+    
+
 }

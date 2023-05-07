@@ -17,8 +17,8 @@ return new class extends Migration
             $table->dateTime('fecha');
             $table->string('foto');
             $table->string('estado');
+            $table->double('importe');
             $table->foreignId('tipogastos_id')->constrained()->onDelete('cascade');
-            $table->foreignId('informes_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

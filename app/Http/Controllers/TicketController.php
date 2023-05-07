@@ -19,8 +19,12 @@ class TicketController extends Controller
 
     public function index(User $user)
     {
+
+        
         //consultamos en la bbdd tickets del usuario
-        $listadoTickets = Ticket::where('user_id', '=', $user->id)->get();
+        $listadoTickets = Ticket::where('user_id', '=', $user->id)
+        ->where('estado','=','Pendiente')
+        ->get();
 
         return view(
             'tickets.index',
@@ -78,7 +82,6 @@ class TicketController extends Controller
             'tipogastos_id' => $request->tipoGasto,
             'foto' => $filename,
             // en la bbdd guardamos el nombre de la imagen. El fichero no se guarda en la bbdd
-            'informes_id' => '1',
             'user_id' => auth()->user()->id,
             'importe' => $request->importe,
             'estado' => 'Pendiente'
@@ -156,7 +159,7 @@ class TicketController extends Controller
 
     public function informed(User $user)
     {
-        $listadoTickets = Ticket::where('estado','=','Enviado')->get();
+        $listadoTickets = Ticket::where('estado','=','Informado')->get();
 
         
         return view(
