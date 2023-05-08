@@ -15,7 +15,7 @@ class Detalle_InformeController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request, User $user, $informe)
+    public function addTicket(Request $request, User $user, $informe)
     {
        
         $selected = $request->input('tickets'); // desde la vista nos llega un array tickets[] en el name del input tipo checkbox
@@ -24,7 +24,8 @@ class Detalle_InformeController extends Controller
         foreach($selected as $ticket)
         {
             $ticketSeleccionado = Ticket::find($ticket);
-
+            $ticketSeleccionado->estado = 'Informado';
+            $ticketSeleccionado->save();
             detalleInforme::create([
                 'user_id' => $user->id,
                 'informes_id' => $informe,
@@ -34,8 +35,6 @@ class Detalle_InformeController extends Controller
 
         }
         
-        $ticketSeleccionado->estado = 'Informado';
-        $ticketSeleccionado->save();
 
         $informeSeleccionado = Informe::find($informe);
 
@@ -48,15 +47,35 @@ class Detalle_InformeController extends Controller
         return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
     }
 
-    public function quitarTicket($id)
+    public function quitarTicket(Request $request, User $user, $informe)
     {
 
-        $ticketSeleccionado = detalleInforme::where('tickets_id','=',$id);
+        $selected = $request->input('tickets'); // desde la vista nos llega un array tickets[] en el name del input tipo checkbox
+        
+        //recorremos el array $selected y guardamos cada id del ticket en la variable $ticket. Por cada uno, guardamos en bbdd
+        foreach($selected as $ticket)
+        {
 
-        $ticketSeleccionado->delete();
+            $ticketSeleccionado = detalleInforme::find($ticket);
+            $ticketSeleccionado->tickets->estado = 'Pendiente';
+            $ticketSeleccionado->tickets->save();
+            
+            $ticketSeleccionado->delete();
+            
+        }
+        
 
-        session()->flash('mensaje','Tickets quitado correctamente!');
-        return redirect()->route('informes.edit',['user' =>auth()->user()->usuario]);
+        $informeSeleccionado = Informe::find($informe);
+
+        $informeSeleccionado->importe = detalleInforme::where('informes_id','=',$informe)->sum('importe');
+
+        $informeSeleccionado->save();
+
+        session()->flash('mensaje','Tickets quitados correctamente!');
+
+        return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
 
     }
+
+
 }

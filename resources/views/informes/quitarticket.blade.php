@@ -3,7 +3,7 @@
 
 @section('titule')
     <div class="container p-3 bg-blue-300 flex justify-center gap-3 ">
-        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Seleccione tickets a añadir al informe
+        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Seleccione tickets a quitar del informe
         <a href="{{ route('informes.index', ['user' => auth()->user()->usuario]) }}"
             class="flex items-center gap-2 bg-red-800 border p-2 mb-3 ml-5 text-white 
 rounded text-sm uppercase font-bold cursor-pointer">
@@ -35,7 +35,7 @@ rounded text-sm uppercase font-bold cursor-pointer">
             </thead>
             <tbody>
 
-                <form action="{{ route('informes.step3', ['user' => auth()->user()->usuario, 'informe' => $informe]) }}"
+                <form action="{{ route('informes.quitarticket', ['user' => auth()->user()->usuario, 'informe' => $informe]) }}"
                     method="POST">
                     @csrf
                     @foreach ($listadoTickets as $item)
@@ -48,8 +48,8 @@ rounded text-sm uppercase font-bold cursor-pointer">
                           dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             </td>
                             <td class="px-6 py-4">{{ $item->id }}</td>
-                            <td class="px-6 py-4">{{ $item->nombre }}</td>
-                            <td class="px-6 py-4">{{ $item->fecha }}</td>
+                            <td class="px-6 py-4">{{ $item->tickets->nombre }}</td>
+                            <td class="px-6 py-4">{{ $item->tickets->fecha }}</td>
                             <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
 
                         </tr>
@@ -58,7 +58,7 @@ rounded text-sm uppercase font-bold cursor-pointer">
             </tbody>
         </table>
 
-        <input type="submit" value="Añadir Tickets"
+        <input type="submit" value="Quitar Tickets"
             class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
 
         </form>

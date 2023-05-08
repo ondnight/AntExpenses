@@ -45,7 +45,7 @@ class InformeController extends Controller
                                   ->get();
         
 
-        return view('informes.step2',[
+        return view('informes.addticket',[
             'user' => $user,
             'listadoTickets' => $listadoTickets,
             'informe' => $id
@@ -53,6 +53,20 @@ class InformeController extends Controller
         ]);       
 
     }
+
+    public function quitarTickets(User $user, $id)
+    {
+        $listadoTickets = detalleInforme::where('informes_id','=',$id)->get();
+        
+
+        return view('informes.quitarticket',[
+            'user' => $user,
+            'listadoTickets' => $listadoTickets,
+            'informe' => $id
+                       
+        ]);       
+    }
+
     public function store(Request $request)
     {
         
@@ -121,7 +135,13 @@ class InformeController extends Controller
         }      
     }
 
+
     public function update($id)
+    {
+
+    }
+
+    public function sendReport($id)
     {
 
     }

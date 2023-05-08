@@ -48,14 +48,16 @@ Route::get('/{user:usuario}/informes/',[InformeController::class,'index'])->name
 Route::get('/informes/create',[InformeController::class,'create'])->name('informes.create');//formulario para crear informes
 Route::post('/informes',[InformeController::class,'store'])->name('informes.store');
 Route::get('/informes/edit/{informe:id}',[InformeController::class,'edit'])->name('informes.edit');
-Route::get('{user:usuario}/informes/step2/{informe:id}',[InformeController::class,'addTickets'])->name('informes.step2');
-Route::post('{user:usuario}/informes/step3/{informe:id}',[Detalle_InformeController::class,'store'])->name('informes.step3');
+Route::get('/{user:usuario}/informes/addticket/{informe:id}',[InformeController::class,'addTickets'])->name('informes.addticket');
+Route::post('/{user:usuario}/informes/addticket/{informe:id}',[Detalle_InformeController::class,'addTicket'])->name('informes.addticket');
+Route::post('/{user:usuario}/informes/sendreport/{informe:id}',[InformeController::class,'sendReport'])->name('informes.sendreport');
 Route::get('/{user:usuario}/informes/sent',[InformeController::class,'sent'])->name('informes.sent'); // listado informes enviados
 Route::get('/{user:usuario}', [PostController::class, 'index'])->name('posts.index'); // redireccion al dashboard
 Route::delete('/informes/{informe:id}',[InformeController::class,'destroy'])->name('informes.destroy');
 Route::put('/informes/edit/{informe:id}',[InformeController::class,'update'])->name('informes.update');
 
-Route::post('/informes/quitarticket/{ticket:id}',[Detalle_InformeController::class,'quitarTicket'])->name('detalleInforme.quitarTicket');
+Route::get('/{user:usuario}/informes/quitarticket/{informe:id}',[InformeController::class,'quitarTickets'])->name('informes.quitarticket');
+Route::post('/{user:usuario}/informes/quitarticket/{informe:id}',[Detalle_InformeController::class,'quitarTicket'])->name('informes.quitarticket');
 
 Route::get('/perfil/{user:usuario}', [PerfilController::class, 'index'])->name('perfil.index');
 Route::put('/perfil/{user:usuario}', [PerfilController::class, 'update'])->name('perfil.update');

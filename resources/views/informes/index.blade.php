@@ -72,10 +72,19 @@
 
                         </a>
                             
-                            <a title="Añadir Tickets" href="{{ route('informes.step2',['user' => auth()->user()->usuario,'informe' => $item->id]) }}"> 
+                            <a title="Añadir Tickets" href="{{ route('informes.addticket',['user' => auth()->user()->usuario,'informe' => $item->id]) }}"> 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
+                                  
+
+                            </a>
+
+                            <a title="Quitar Tickets" href="{{ route('informes.quitarticket',['user' => auth()->user()->usuario,'informe' => $item->id]) }}"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  
                                   
 
                             </a>
@@ -95,7 +104,7 @@
 
                             </form>
 
-                            <form action="{{ route('informes.sent', $item->id) }}" id="enviarInforme" method="post">
+                            <form action="{{ route('informes.sendreport', ['informe' => $item->id , 'user' => auth()->user()->usuario ]) }}" id="enviarInforme" method="post">
 
                                 
                                 @csrf

@@ -26,6 +26,11 @@ class Ticket extends Model
         return $this->belongsTo(Tipogasto::class, 'tipogastos_id');
     }
 
+    public function detalleInformes()
+    {
+        return $this->hasMany(detalleInforme::class, 'id_tickets');
+    }
+
     
 
     

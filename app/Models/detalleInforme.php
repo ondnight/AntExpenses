@@ -21,5 +21,6 @@ class detalleInforme extends Model
     {
         return $this->belongsTo(Ticket::class,'tickets_id');
     }
+    
   
 }
