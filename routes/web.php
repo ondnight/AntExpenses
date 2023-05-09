@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Detalle_InformeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
@@ -10,6 +10,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Detalle_InformeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,4 @@ Route::put('/perfil/{user:usuario}', [PerfilController::class, 'update'])->name(
 Route::get('/perfil/changepass/{user:usuario}',[PerfilController::class, 'changePassword'])->name('perfil.changePassword');
 Route::post('/perfil/updatepass/{user:usuario}',[PerfilController::class, 'updatePassword'])->name('perfil.updatePassword');
 
+Route::get('/{user:usuario}',[AdminController::class,'index'])->name('admin.index');

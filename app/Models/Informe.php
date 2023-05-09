@@ -15,6 +15,8 @@ class Informe extends Model
         'estado',
         'user_id',
         'importe',
+        'revision',
+        'observaciones'
     ];
 
     public function user()

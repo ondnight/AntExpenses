@@ -30,6 +30,13 @@ class LoginController extends Controller
 
         // si las credenciales son correctas redireccionamos al muro
 
-        return redirect()->route('posts.index',['user' => auth()->user()->usuario]);
+        if(auth()->user()->usuario == 'luis'){
+            return redirect()->route('admin.index',['user' => auth()->user()->usuario]);
+        }
+        else{
+            return redirect()->route('posts.index',['user' => auth()->user()->usuario]);
+        }
+
+        
     }
 }

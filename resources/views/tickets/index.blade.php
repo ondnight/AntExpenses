@@ -11,7 +11,7 @@
 
         <nav class="flex gap-4 items-center ml-4 mb-4">
             <a href="{{ route('tickets.create') }}"
-                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+                class=" flex items-center gap-2 bg-blue-500 border hover:bg-blue-700 p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -20,7 +20,7 @@
                 </svg>
                 Nuevo Ticket</a>
             <a href="{{ route('tickets.informed', ['user' => auth()->user()->usuario]) }}"
-                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+                class=" flex items-center gap-2 bg-blue-500 hover:bg-blue-700 border p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -30,7 +30,7 @@
 
                 Tickets Informados</a>
             <a href="{{ route('posts.index', ['user' => auth()->user()->usuario]) }}"
-                class="flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+                class="flex items-center gap-2 bg-red-500 hover:bg-red-700 border p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">

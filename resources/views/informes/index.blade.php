@@ -4,7 +4,6 @@
     <div class="container p-3 bg-blue-300 flex justify-center gap-3 ">
         Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Total de Informes: {{ $listadoInformes->count() }}
     </div>
-
 @endsection
 
 @section('content')
@@ -31,7 +30,7 @@
 
                 Informes Enviados</a>
             <a href="{{ route('posts.index', ['user' => auth()->user()->usuario]) }}"
-                class="flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+                class="flex items-center gap-2 bg-red-500 border p-2 mb-3 text-white 
         rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -48,6 +47,8 @@
                 <th scope="col" class="px-6 py-3">Fecha</th>
                 <th scope="col" class="px-6 py-3">Importe</th>
                 <th scope="col" class="px-6 py-3">Estado</th>
+                <th scope="col" class="px-6 py-3">Revision</th>
+                <th scope="col" class="px-6 py-3">Observaciones</th>
                 <th scope="col" class="px-6 py-3">Acciones</th>
 
             </thead>
@@ -59,37 +60,40 @@
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
                         <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                         <td class="px-6 py-4">{{ $item->estado }}</td>
+                        <td class="px-6 py-4">{{ $item->revision }}</td>
+                        <td class="px-6 py-4">{{ $item->observaciones }}</td>
 
 
                         <td class="px-6 py-4 flex items-center gap-4">
                             <a title="Editar" href="{{ route('informes.edit', $item->id) }}"> <svg
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                            </svg>
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                </svg>
 
-
-                        </a>
-                            
-                            <a title="Añadir Tickets" href="{{ route('informes.addticket',['user' => auth()->user()->usuario,'informe' => $item->id]) }}"> 
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                  </svg>
-                                  
 
                             </a>
 
-                            <a title="Quitar Tickets" href="{{ route('informes.quitarticket',['user' => auth()->user()->usuario,'informe' => $item->id]) }}"> 
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                  </svg>
-                                  
-                                  
-
+                            <a title="Añadir Tickets"
+                                href="{{ route('informes.addticket', ['user' => auth()->user()->usuario, 'informe' => $item->id]) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </a>
 
-                            <form action="{{ route('informes.destroy', $item->id) }}"  id="eliminarTicket" method="post">
+                            <a title="Quitar Tickets"
+                                href="{{ route('informes.quitarticket', ['user' => auth()->user()->usuario, 'informe' => $item->id]) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </a>
+
+                            <form action="{{ route('informes.destroy', $item->id) }}" id="eliminarInforme" method="post">
 
                                 @method('delete')
                                 @csrf
@@ -104,17 +108,18 @@
 
                             </form>
 
-                            <form action="{{ route('informes.sendreport', ['informe' => $item->id , 'user' => auth()->user()->usuario ]) }}" id="enviarInforme" method="post">
+                            <form
+                                action="{{ route('informes.sendreport', ['informe' => $item->id, 'user' => auth()->user()->usuario]) }}"
+                                id="enviarInforme" method="post">
 
-                                
                                 @csrf
-                                <a title="Enviar Informe" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                                      </svg>
-                                      
-
-                                    </a>
+                                <button title="Enviar Informe">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                    </svg>
+                                </button>
 
                             </form>
 
@@ -125,4 +130,30 @@
             </tbody>
         </table>
     </div>
+
+    <script type="text/javascript">
+        //Ventana modal para confirmación de eliminar informe
+
+        document.getElementById("eliminarInforme").addEventListener('click', function(e) {
+
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "!Esta acción es irreversible!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, bórralo!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    this.submit();
+
+                }
+            })
+
+        })
+    </script>
 @endsection

@@ -19,7 +19,9 @@ class InformeController extends Controller
     public function index(User $user)
     {
         
-        $listadoInformes = Informe::where('user_id', '=', $user->id)->get();
+        $listadoInformes = Informe::where('user_id', '=', $user->id)
+                                    ->where('estado','=','Pendiente')
+                                    ->get();
 
 
         return view(
@@ -80,7 +82,10 @@ class InformeController extends Controller
             'fecha' =>$request->fecha,
             'user_id' => auth()->user()->id,
             'estado' => 'Pendiente',
-            'importe' => 0
+            'importe' => 0,
+            'revision' => 'Pendiente de revisión',
+            'observaciones' => ''
+
         ]);
 
         session()->flash('mensaje','Informe creado correctamente!');
@@ -105,13 +110,15 @@ class InformeController extends Controller
 
     public function sent(User $user)
     {
-        $listadoInformesEnviados = Informe::where('estado', '=', 'enviado')->get();
+        $listadoInformes = Informe::where('user_id', '=', $user->id)
+        ->where('estado','=','Enviado')
+        ->get();
 
         return view(
             'informes.sent',
             [
                 'user' => $user,
-                'listadoInformesEnviados' => $listadoInformesEnviados
+                'listadoInformes' => $listadoInformes
             ]
         );
     }
@@ -120,7 +127,7 @@ class InformeController extends Controller
     {
         $informeSeleccionado = Informe::find($id);
 
-        if($informeSeleccionado->importe>=0)
+        if($informeSeleccionado->importe>0)
         {
             session()->flash('mensajeError','¡Antes de eliminar el informe, debe quitar los tickets del informe!'); 
             return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
@@ -136,14 +143,33 @@ class InformeController extends Controller
     }
 
 
-    public function update($id)
+    public function update(Request $request, User $user, $id)
     {
+        $this->validate($request, [
+            'nombre' => ['required', 'max:255'],
+            'fecha' => ['required'],
+        ]);
+
+        $informeSeleccionado = Informe::find($id);
+
+        $informeSeleccionado-> nombre = $request->nombre;
+        $informeSeleccionado->fecha = $request->fecha;
+        $informeSeleccionado->save();
+
+        session()->flash('mensaje','Informe actualizado correctamente!');
+        return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
 
     }
 
-    public function sendReport($id)
+    public function sendReport(User $user, $id)
     {
+        $informeSeleccionado = Informe::find($id);
 
+        $informeSeleccionado->estado = 'Enviado';
+        $informeSeleccionado->save();
+
+        session()->flash('mensaje','Informe enviado correctamente!');
+        return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
     }
 
 

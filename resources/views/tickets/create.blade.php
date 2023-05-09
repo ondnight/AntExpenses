@@ -6,17 +6,8 @@
             Registra un nuevo ticket
         </p>
 
-        <a href="{{ route('tickets.index', ['user' => auth()->user()->usuario]) }}"
-            class="flex items-center gap-2 bg-red-800 border p-2 mb-3 ml-5 text-white 
-    rounded text-sm uppercase font-bold cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-            </svg>
 
-            Volver</a>
     </div>
-
 @endsection
 
 
@@ -85,8 +76,15 @@
                     <p class="text-red-500 my-2 rounded-lg text-sm p-2 text-center-left">{{ $message }}</p>
                 @enderror
 
-                <input type="submit" value="Crear Ticket"
-                    class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
+                <nav class="flex items-center">
+                    <input type="submit" value="Crear Ticket"
+                        class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
+                    <a href="{{ route('tickets.index', ['user' => auth()->user()->usuario]) }}"
+                        class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
+
+                        Volver</a>
+                </nav>
+
             </form>
 
         </div>
