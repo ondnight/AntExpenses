@@ -21,16 +21,13 @@ class Informe extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function detalleInforme()
     {
-        return $this->belongsTo(detalleInforme::class, 'informes_id');
+        return $this->belongsTo(detalleInforme::class);
     }
 
-    public function tickets()
-    {
-        return $this->hasMany(Ticket::class,'tickets_id');
-    }
+    
 }

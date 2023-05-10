@@ -17,10 +17,17 @@ class detalleInforme extends Model
    
     ];
 
-    public function tickets()
+    public function ticket()
     {
-        return $this->belongsTo(Ticket::class,'tickets_id');
+        return $this-> belongsTo(Ticket::class,'tickets_id');
     }
+
+    public function informe()
+    {
+        return $this->belongsTo(Informe::class,'informes_id');
+    }
+
+   
     
   
 }

@@ -23,12 +23,20 @@ class User extends Authenticatable
         'usuario',
         'email',
         'password',
+        'isadmin'
     ];
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class,'user_id');
+        return $this->hasMany(Ticket::class);
     }
+
+    public function informes()
+    {
+        return $this->hasMany(Informe::class);
+    }
+
+
 
    
 

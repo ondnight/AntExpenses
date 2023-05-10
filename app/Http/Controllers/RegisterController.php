@@ -31,7 +31,8 @@ class RegisterController extends Controller
             'apellidos'=>$request->apellidos,
             'usuario'=>Str::slug($request->usuario), //convierte el username a url, para quitar mayusculas, espacios...
             'email'=>$request->email,
-            'password'=>Hash::make($request->password) // con la funcion hash protegemos el password en la bbdd
+            'password'=>Hash::make($request->password), // con la funcion hash protegemos el password en la bbdd
+            'isadmin'=>'0'
         ]);
 
         //autenticacion de usuario

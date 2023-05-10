@@ -34,7 +34,7 @@ Route::post('/register',[RegisterController::class,'store'])->name('register'); 
 
 Route::get('/login',[LoginController::class,'index'])->name('login'); //ruta del login
 Route::post('/login',[LoginController::class,'store'])->name('login'); //ruta para el envio del form del login
-
+Route::get('/{user:usuario}/dashboard/', [PostController::class, 'index'])->name('posts.index'); // redireccion al dashboard
 Route::post('/logout',[LogoutController::class,'store'])->name('logout'); //ruta para cerrar sesión. Usamos post para dar seguridad con csrf
 
 Route::get('/{user:usuario}/tickets/',[TicketController::class,'index'])->name('tickets.index');//listado de tickets
@@ -53,7 +53,7 @@ Route::get('/{user:usuario}/informes/addticket/{informe:id}',[InformeController:
 Route::post('/{user:usuario}/informes/addticket/{informe:id}',[Detalle_InformeController::class,'addTicket'])->name('informes.addticket');
 Route::post('/{user:usuario}/informes/sendreport/{informe:id}',[InformeController::class,'sendReport'])->name('informes.sendreport');
 Route::get('/{user:usuario}/informes/sent',[InformeController::class,'sent'])->name('informes.sent'); // listado informes enviados
-Route::get('/{user:usuario}', [PostController::class, 'index'])->name('posts.index'); // redireccion al dashboard
+
 Route::delete('/informes/{informe:id}',[InformeController::class,'destroy'])->name('informes.destroy');
 Route::put('/informes/edit/{informe:id}',[InformeController::class,'update'])->name('informes.update');
 
@@ -66,3 +66,9 @@ Route::get('/perfil/changepass/{user:usuario}',[PerfilController::class, 'change
 Route::post('/perfil/updatepass/{user:usuario}',[PerfilController::class, 'updatePassword'])->name('perfil.updatePassword');
 
 Route::get('/{user:usuario}',[AdminController::class,'index'])->name('admin.index');
+Route::get('/{user:usuario}/listadoinformes/',[AdminController::class,'informes'])->name('admin.informes');
+Route::get('/{user:usuario}/listadoinformes/pending/',[AdminController::class,'pending'])->name('admin.pending');
+Route::get('/{user:usuario}/listadoinformes/completed/',[AdminController::class,'completed'])->name('admin.completed');
+Route::get('/{user:usuario}/listadoinformes/pending/tickets/{informe:id}',[AdminController::class,'listadoTickets'])->name('admin.listadoTickets');
+Route::get('/{user:usuario}/listadoinformes/pending/check/',[AdminController::class,'check'])->name('admin.check');
+

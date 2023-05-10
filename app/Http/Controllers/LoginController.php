@@ -28,15 +28,16 @@ class LoginController extends Controller
 
         session()->flash('mensaje','¡Login Correcto!');
 
-        // si las credenciales son correctas redireccionamos al muro
+        // si las credenciales son correctas redireccionamos al dashboard
 
-        if(auth()->user()->usuario == 'luis'){
+        //comprobamos si el usuario es admin, redireccionamos al dashboard de admin
+        if(auth()->user()->isadmin == 1){
             return redirect()->route('admin.index',['user' => auth()->user()->usuario]);
         }
+        //sino al dashboard del empleado
         else{
             return redirect()->route('posts.index',['user' => auth()->user()->usuario]);
         }
-
         
     }
 }
