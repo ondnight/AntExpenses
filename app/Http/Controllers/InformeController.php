@@ -165,11 +165,20 @@ class InformeController extends Controller
     {
         $informeSeleccionado = Informe::find($id);
 
-        $informeSeleccionado->estado = 'Enviado';
-        $informeSeleccionado->save();
-
-        session()->flash('mensaje','Informe enviado correctamente!');
+        if($informeSeleccionado->importe==0){
+            session()->flash('mensajeError','Debe adjuntar tickets de gastos al informe antes de enviarlo!');
         return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
+        }
+        else{
+            $informeSeleccionado->estado = 'Enviado';
+            $informeSeleccionado->revision = 'Pendiente de revisión';
+            $informeSeleccionado->save();
+    
+            session()->flash('mensaje','Informe enviado correctamente!');
+            return redirect()->route('informes.index',['user' =>auth()->user()->usuario]);
+        }
+
+       
     }
 
 

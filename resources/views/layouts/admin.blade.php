@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('styles') <!-- esto nos permite agregar estilos solo en algunas hojas con el helper push-->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Ant Expenses</title>
 

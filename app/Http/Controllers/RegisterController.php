@@ -40,10 +40,17 @@ class RegisterController extends Controller
 
         session()->flash('mensaje','¡Usuario Registrado Correctamente!');
 
-        //redireccionamos despues de crear el usuario
+        
+        //comprobamos si el usuario es admin, redireccionamos al dashboard de admin
+        if(auth()->user()->isadmin == 1){
+            return redirect()->route('admin.index',['user' => auth()->user()->usuario]);
+        }
+        //sino al dashboard del empleado
+        else{
+            return redirect()->route('posts.index',['user' => auth()->user()->usuario]);
+        }
 
-
-        return redirect()->route('posts.index',['user' =>auth()->user()->usuario]);
+        
     }
 
     

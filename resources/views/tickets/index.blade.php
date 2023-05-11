@@ -77,11 +77,11 @@
 
 
                             </a>
-                            <form action="{{ route('tickets.destroy', $item->id) }}"  id="eliminarTicket" method="post">
+                            <form action="{{ route('tickets.destroy', $item->id) }}" method="post">
 
                                 @method('delete')
                                 @csrf
-                                <button title="Borrar" type="submit">
+                                <button name="eliminarTicket" title="Borrar" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -165,7 +165,7 @@
 
         //Ventana modal para confirmación de eliminar ticket
 
-        document.getElementById("eliminarTicket").addEventListener('click', function(e) {
+        document.getElementsByName("eliminarTicket").addEventListener('click', function(e) {
             
             e.preventDefault();
 

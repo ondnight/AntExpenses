@@ -70,7 +70,7 @@
                     <label for="importe" class="mb-2 block uppercase text-gray-500 font-bold">Importe</label>
                     <input class="border p-3 w-full rounded-lg mb-2 @error('importe') border-red-500 @enderror"
                         type="number" step="0.01" name="importe" id="importe" placeholder="Indica el importe"
-                        value={{ old('importe') }}>
+                        value={{ old('importe') }} min="1">
                 </div>
                 @error('importe')
                     <p class="text-red-500 my-2 rounded-lg text-sm p-2 text-center-left">{{ $message }}</p>

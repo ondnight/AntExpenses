@@ -2,7 +2,7 @@
 
 @section('titule')
 <div>
-    Administrador: {{ $user->nombre . ' ' . $user->apellidos }}
+    Administrador: {{ $user->nombre . ' ' . $user->apellidos }} . Nº Informes Pendientes: {{$listadoInformes->count()}}
 </div>
 @endsection
 
@@ -84,7 +84,6 @@
                           </svg>
                           
                     </a>
-
 
                 </td>
             </tr>

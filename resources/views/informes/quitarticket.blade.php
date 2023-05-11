@@ -40,8 +40,8 @@
                           dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             </td>
                             <td class="px-6 py-4">{{ $item->id }}</td>
-                            <td class="px-6 py-4">{{ $item->tickets->nombre }}</td>
-                            <td class="px-6 py-4">{{ $item->tickets->fecha }}</td>
+                            <td class="px-6 py-4">{{ $item->ticket->nombre }}</td>
+                            <td class="px-6 py-4">{{ $item->ticket->fecha }}</td>
                             <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
 
                         </tr>

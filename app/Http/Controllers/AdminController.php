@@ -42,6 +42,18 @@ class AdminController extends Controller
         ]);
    }
 
+   public function completed(User $user)
+   {
+    $listadoInformes = Informe::where('revision','!=','Pendiente de revisión')
+                            ->orderBy('nombre')
+                            ->get();
+    
+    return view('admin.completed',[
+        'user' => $user,
+        'listadoInformes' => $listadoInformes
+    ]);
+   }
+
    public function listadoTickets(User $user, $informe)
    {
      $listadoTickets = detalleInforme::where('informes_id','=',$informe)->get();
@@ -54,18 +66,58 @@ class AdminController extends Controller
 
    }
 
-   public function check()
-   {
-    return view('admin.check');
-   }
-
-   public function accept()
+   public function check(User $user, $id)
    {
 
+    $informe = Informe::find($id);
+
+    return view('admin.check',[
+        'user' => $user,
+        'informe' => $informe
+    ]);
    }
 
-   public function reject()
+   public function update(Request $request, User $user, $id)
    {
 
+    $this->validate($request, [
+        'observaciones' => ['required'],
+       
+    ]);
+
+    $informe = Informe::find($id);
+
+    $selected = $request->input('radio');
+    
+    if($selected == 'accept'){
+
+        $informe->observaciones = $request->observaciones;
+        $informe->revision = 'Aceptado';
+        $informe->save();
+
+        session()->flash('mensaje','Informe guardado correctamente');
+        return view('admin.informes',[
+            'user' => $user
+        ]);
+       
+    }
+    else{
+        $informe->observaciones = $request->observaciones;
+        $informe->revision = 'Rechazado';
+        $informe->estado = 'Pendiente';
+        $informe->save();
+
+        session()->flash('mensaje','Informe guardado correctamente');
+        return view('admin.informes',[
+            'user' => $user
+        ]);
+    }
+    
+
+    
+
+
    }
+
+ 
 }

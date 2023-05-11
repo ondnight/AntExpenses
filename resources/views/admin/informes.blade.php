@@ -2,7 +2,7 @@
 
 @section('titule')
 <div>
-    Administrador: {{ $user->nombre . ' ' . $user->apellidos }}
+    Administrador: {{ $user->nombre . ' ' . $user->apellidos }} 
 </div>
 @endsection
 

@@ -57,8 +57,8 @@ class Detalle_InformeController extends Controller
         {
 
             $ticketSeleccionado = detalleInforme::find($ticket);
-            $ticketSeleccionado->tickets->estado = 'Pendiente';
-            $ticketSeleccionado->tickets->save();
+            $ticketSeleccionado->ticket->estado = 'Pendiente';
+            $ticketSeleccionado->ticket->save();
             
             $ticketSeleccionado->delete();
             

@@ -159,7 +159,9 @@ class TicketController extends Controller
 
     public function informed(User $user)
     {
-        $listadoTickets = Ticket::where('estado','=','Informado')->get();
+        $listadoTickets = Ticket::where('estado','=','Informado')
+                                    ->where('user_id','=',$user->id)
+                                    ->get();
 
         
         return view(

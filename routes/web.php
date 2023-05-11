@@ -70,5 +70,5 @@ Route::get('/{user:usuario}/listadoinformes/',[AdminController::class,'informes'
 Route::get('/{user:usuario}/listadoinformes/pending/',[AdminController::class,'pending'])->name('admin.pending');
 Route::get('/{user:usuario}/listadoinformes/completed/',[AdminController::class,'completed'])->name('admin.completed');
 Route::get('/{user:usuario}/listadoinformes/pending/tickets/{informe:id}',[AdminController::class,'listadoTickets'])->name('admin.listadoTickets');
-Route::get('/{user:usuario}/listadoinformes/pending/check/',[AdminController::class,'check'])->name('admin.check');
-
+Route::get('/{user:usuario}/listadoinformes/pending/check/{informe:id}',[AdminController::class,'check'])->name('admin.check');
+Route::put('/{user:usuario}/listadoinformes/pending/check/{informe:id}',[AdminController::class,'update'])->name('admin.check');
