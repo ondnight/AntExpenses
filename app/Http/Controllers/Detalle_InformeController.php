@@ -18,8 +18,10 @@ class Detalle_InformeController extends Controller
     public function addTicket(Request $request, User $user, $informe)
     {
        
+
         $selected = $request->input('tickets'); // desde la vista nos llega un array tickets[] en el name del input tipo checkbox
         
+       
         //recorremos el array $selected y guardamos cada id del ticket en la variable $ticket. Por cada uno, guardamos en bbdd
         foreach($selected as $ticket)
         {

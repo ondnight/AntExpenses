@@ -60,7 +60,32 @@
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
                         <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                         <td class="px-6 py-4">{{ $item->estado }}</td>
-                        <td class="px-6 py-4">{{ $item->revision }}</td>
+                        <td id="revision" class="px-6 py-4">
+                            @if($item->revision == 'Aceptado')
+                            <style type="text/css">
+                                    #revision{
+                                        color:blue;
+                                    }
+
+                                </style>
+                                @elseif($item->revision == 'Rechazado')
+                                <style type="text/css">
+                                    #revision{
+                                        color:red;
+                                    }
+
+                                </style>
+                                @else 
+                                <style type="text/css">
+                                    #revision{
+                                        color:grey;
+                                    }
+
+                                </style>
+
+                                {{$item->revision}}
+                        </td>
+                        @endif
                         <td class="px-6 py-4">{{ $item->observaciones }}</td>
 
 
@@ -126,14 +151,18 @@
                         </td>
                     </tr>
                 @endforeach
+              
 
             </tbody>
         </table>
     </div>
 
+   
+
+     <!--
     <script type="text/javascript">
         //Ventana modal para confirmación de eliminar informe
-
+       
         document.getElementById("eliminarInforme").addEventListener('click', function(e) {
 
             e.preventDefault();
@@ -155,5 +184,7 @@
             })
 
         })
-    </script>
+        </script>
+    -->
+    
 @endsection

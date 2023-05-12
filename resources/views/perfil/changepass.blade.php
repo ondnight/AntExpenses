@@ -43,10 +43,21 @@
                     <input type="submit" value="Cambiar contraseña"
                         class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold ml-10 mt-10 mb-10 p-3 text-white rounded-lg">         
                         
-                        <a href="{{ route('admin.index', ['user' => auth()->user()->usuario]) }}"
-                            class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
-                            
-                            Volver</a>
+                        @if(auth()->user()->isadmin)
+                            <a href="{{ route('admin.index', ['user' => auth()->user()->usuario]) }}"
+                                class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
+                                
+                                Volver</a>
+                        
+                        @else
+                       
+                            <a href="{{ route('posts.index', ['user' => auth()->user()->usuario]) }}"
+                                class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
+                                
+                                Volver</a>
+                        
+                        @endif
+                       
                 </nav>
             </form>
 

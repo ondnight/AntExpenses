@@ -64,7 +64,7 @@ class TicketController extends Controller
             'fecha' => ['required'],
             'tipoGasto' => ['required'],
             'foto' => ['required'],
-            'importe' => ['required']
+            'importe' => ['required','min:0.01']
         ]);
 
         //guardamos la imagen en public/uploads

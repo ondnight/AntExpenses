@@ -81,7 +81,8 @@
 
                                 @method('delete')
                                 @csrf
-                                <button name="eliminarTicket" title="Borrar" type="submit">
+                                <button name="eliminarTicket" title="Borrar"
+                                    type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -158,35 +159,7 @@
                 modal.style.display = "none";
             }
         }
-        
     </script>
 
-    <script type="text/javascript">
-
-        //Ventana modal para confirmación de eliminar ticket
-
-        document.getElementsByName("eliminarTicket").addEventListener('click', function(e) {
-            
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Está seguro?',
-                text: "!Esta acción es irreversible!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, bórralo!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-        
-                    this.submit();
-                        
-                }
-            })
-
-        })
-
-    </script>
-
+    
 @endsection

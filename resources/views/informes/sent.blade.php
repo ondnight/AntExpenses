@@ -43,7 +43,29 @@ rounded text-sm uppercase font-bold cursor-pointer">
                     <td class="px-6 py-4">{{ $item->fecha }}</td>
                     <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                     <td class="px-6 py-4">{{ $item->estado }}</td>
-                    <td class="px-6 py-4">{{ $item->revision }}</td>
+                    <td id="revision" class="px-6 py-4">
+                        @if($item->revision == 'Aceptado')
+                        <style type="text/css">
+                                #revision{
+                                    color:green;
+                                }
+
+                            </style>
+                        {{$item->revision}}
+
+                        @else
+                        <style type="text/css">
+                            #revision{
+                                color:red;
+                            }
+
+                        </style>
+                            
+                    </td>
+                    @endif
+                    
+                    
+                    </td>
                     <td class="px-6 py-4">{{ $item->observaciones }}</td>
 
                     

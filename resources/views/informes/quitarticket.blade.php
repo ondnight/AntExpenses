@@ -34,7 +34,7 @@
                         <tr>
                             <td class="px-6 py-4">
                                 <!-- importante en el name poner un array, y en el value la id del ticket -->
-                                <input id="check" name="tickets[]" type="checkbox" value="{{ $item->id }}"
+                                <input required id="check" name="tickets[]" type="checkbox" value="{{ $item->id }}"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
                          focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
                           dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
@@ -49,7 +49,16 @@
 
             </tbody>
         </table>
-
+        @if($listadoTickets->count()==0)
+        <nav class="flex items-center">
+            
+                
+                <a href="{{ route('informes.index', ['user' => auth()->user()->usuario]) }}"
+                    class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
+                    
+                    Volver</a>
+        </nav>
+        @else
         <nav class="flex items-center">
             <input type="submit" value="Quitar Tickets"
                 class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold ml-10 mt-10 mb-10 p-3 text-white rounded-lg">         
@@ -60,6 +69,7 @@
                     Volver</a>
         </nav>
         </form>
+        @endif
 
     </div>
 @endsection

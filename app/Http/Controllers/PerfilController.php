@@ -79,6 +79,8 @@ class PerfilController extends Controller
 
             $usuario->save();
 
+
+
             session()->flash('mensaje', '¡Contraseña modificada Correctamente!');
 
             return redirect()->route('posts.index', ['user' => auth()->user()->usuario]);

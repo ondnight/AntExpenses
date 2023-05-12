@@ -75,7 +75,7 @@
                 <input type="submit" value="Guardar"
                     class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
 
-                <a href="{{ route('informes.index', ['user' => auth()->user()->usuario]) }}"
+                <a href="{{ route('admin.pending', ['user' => auth()->user()->usuario]) }}"
                     class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
 
                     Volver</a>
