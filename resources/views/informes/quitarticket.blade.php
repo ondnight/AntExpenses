@@ -34,10 +34,11 @@
                         <tr>
                             <td class="px-6 py-4">
                                 <!-- importante en el name poner un array, y en el value la id del ticket -->
-                                <input required id="check" name="tickets[]" type="checkbox" value="{{ $item->id }}"
+                                <input id="check" name="tickets[]" type="checkbox" value="{{ $item->id }}"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
                          focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
-                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                          dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                          @error('tickets') border-red-500 @enderror">
                             </td>
                             <td class="px-6 py-4">{{ $item->id }}</td>
                             <td class="px-6 py-4">{{ $item->ticket->nombre }}</td>
@@ -46,6 +47,9 @@
 
                         </tr>
                     @endforeach
+                    @error('tickets')
+                    <p class="text-red-500 my-2 rounded-lg text-sm p-2 text-center-left">{{ $message }}</p>
+                @enderror
 
             </tbody>
         </table>
