@@ -19,6 +19,19 @@ rounded text-sm uppercase font-bold cursor-pointer">
 @endsection
 
 @section('content')
+
+<style>
+    .revision1 {
+        color: black !important;
+        font-weight: bold;
+    }
+
+    .revision2 {
+        color: green !important;
+        font-weight: bold;
+    }
+</style>
+
 <div class="relative overflow-x-1 shadow-md sm:rounded-lg">
 
     
@@ -43,37 +56,23 @@ rounded text-sm uppercase font-bold cursor-pointer">
                     <td class="px-6 py-4">{{ $item->fecha }}</td>
                     <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                     <td class="px-6 py-4">{{ $item->estado }}</td>
-                    <td id="revision" class="px-6 py-4">
-                        @if($item->revision == 'Aceptado')
-                        <style type="text/css">
-                                #revision{
-                                    color:green;
-                                }
-
-                            </style>
-                        {{$item->revision}}
-
-                        @else
-                        <style type="text/css">
-                            #revision{
-                                color:red;
-                            }
-
-                        </style>
-                            
-                    </td>
+                    @if ($item->revision == 'Pendiente de revisión')
+                    <td class="revision1 px-6 py-4">{{$item->revision}}</td>
                     @endif
-                    
-                    
-                    </td>
+                    @if ($item->revision == 'Aceptado')
+                    <td class="revision2 px-6 py-4">{{$item->revision}}</td>
+                    @endif
                     <td class="px-6 py-4">{{ $item->observaciones }}</td>
 
-                    
                 </tr>
             @endforeach
 
         </tbody>
     </table>
+</div>
+
+<div>
+    {{$listadoInformes->links('pagination::tailwind')}}
 </div>
 
 

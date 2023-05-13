@@ -2,7 +2,7 @@
 
 @section('titule')
     <div class="container p-3 bg-blue-300 flex justify-center gap-3 ">
-        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Total de Tickets: {{ $listadoTickets->count() }}
+        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Tickets Pendientes: {{ $listadoTickets->count() }}
     </div>
 @endsection
 
@@ -11,7 +11,7 @@
 
         <nav class="flex gap-4 items-center ml-4 mb-4">
             <a href="{{ route('tickets.create') }}"
-                class=" flex items-center gap-2 bg-blue-500 border hover:bg-blue-700 p-2 mb-3 text-white 
+                class=" flex items-center gap-2 bg-green-500 border hover:bg-green-700 p-2 mb-3 text-white 
             rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -77,11 +77,11 @@
 
 
                             </a>
-                            <form action="{{ route('tickets.destroy', $item->id) }}" method="post">
+                            <form action="{{ route('tickets.destroy', $item->id) }}" id="eliminarTicket" method="post">
 
                                 @method('delete')
                                 @csrf
-                                <button name="eliminarTicket" title="Borrar"
+                                <button class="borrar"  title="Borrar"
                                     type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -99,6 +99,10 @@
 
             </tbody>
         </table>
+
+        <div>
+            {{$listadoTickets->links('pagination::tailwind')}}
+        </div>
 
         <!-- Modal ampliación imagen-->
 

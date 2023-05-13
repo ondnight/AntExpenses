@@ -57,6 +57,9 @@
 
             </tbody>
         </table>
+        <div>
+            {{$listadoTickets->links('pagination::tailwind')}}
+        </div>
 
         <!-- Modal ampliación imagen-->
 
@@ -118,4 +121,6 @@
             }
         }
     </script>
+
+
 @endsection

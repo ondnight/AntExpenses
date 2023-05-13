@@ -72,4 +72,7 @@
             </tbody>
         </table>
     </div>
+    <div>
+        {{$listadoInformes->links('pagination::tailwind')}}
+    </div>
 @endsection

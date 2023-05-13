@@ -34,7 +34,7 @@ class AdminController extends Controller
    {
         $listadoInformes = Informe::where('revision','=','Pendiente de revisión')
                             ->orderBy('nombre')
-                            ->get();
+                            ->paginate(5);
 
         return view('admin.pending',[
             'user' => $user,
@@ -46,7 +46,7 @@ class AdminController extends Controller
    {
     $listadoInformes = Informe::where('revision','!=','Pendiente de revisión')
                             ->orderBy('nombre')
-                            ->get();
+                            ->paginate(5);
     
     return view('admin.completed',[
         'user' => $user,
@@ -56,7 +56,7 @@ class AdminController extends Controller
 
    public function listadoTickets(User $user, $informe)
    {
-     $listadoTickets = detalleInforme::where('informes_id','=',$informe)->get();
+     $listadoTickets = detalleInforme::where('informes_id','=',$informe)->paginate(5);
         
    
         return view('admin.tickets',[

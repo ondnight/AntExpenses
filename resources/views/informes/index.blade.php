@@ -7,11 +7,24 @@
 @endsection
 
 @section('content')
+
+    <style>
+        .revision1 {
+            color: red !important;
+            font-weight: bold;
+        }
+
+        .revision2 {
+            color: blue !important;
+            font-weight: bold;
+        }
+    </style>
+
     <div class="relative overflow-x-1 shadow-md sm:rounded-lg">
 
         <nav class="flex gap-4 items-center ml-4 mb-4">
             <a href="{{ route('informes.create') }}"
-                class=" flex items-center gap-2 bg-blue-500 border p-2 mb-3 text-white 
+                class=" flex items-center gap-2 bg-green-500 border p-2 mb-3 text-white 
         rounded text-sm uppercase font-bold cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
@@ -53,6 +66,7 @@
 
             </thead>
             <tbody>
+
                 @foreach ($listadoInformes as $item)
                     <tr>
                         <td class="px-6 py-4">{{ $item->id }}</td>
@@ -60,35 +74,12 @@
                         <td class="px-6 py-4">{{ $item->fecha }}</td>
                         <td class="px-6 py-4">{{ $item->importe . ' €' }}</td>
                         <td class="px-6 py-4">{{ $item->estado }}</td>
-                        <td id="revision" class="px-6 py-4">
-                            @if($item->revision == 'Aceptado')
-                            <style type="text/css">
-                                    #revision{
-                                        color:blue;
-                                    }
-
-                                </style>
-                                @elseif($item->revision == 'Rechazado')
-                                <style type="text/css">
-                                    #revision{
-                                        color:red;
-                                    }
-
-                                </style>
-                                @else 
-                                <style type="text/css">
-                                    #revision{
-                                        color:grey;
-                                    }
-
-                                </style>
-
-                                {{$item->revision}}
-                        </td>
+                        @if ($item->revision == 'Rechazado')
+                            <td class="revision1 px-6 py-4">{{ $item->revision }}</td>
+                        @elseif ($item->revision == 'Pendiente de revisión')
+                            <td class="revision2 px-6 py-4">{{ $item->revision }}</td>
                         @endif
                         <td class="px-6 py-4">{{ $item->observaciones }}</td>
-
-
                         <td class="px-6 py-4 flex items-center gap-4">
                             <a title="Editar" href="{{ route('informes.edit', $item->id) }}"> <svg
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -122,7 +113,7 @@
 
                                 @method('delete')
                                 @csrf
-                                <button title="Borrar" type="submit">
+                                <button class="borrar" title="Borrar" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -138,7 +129,7 @@
                                 id="enviarInforme" method="post">
 
                                 @csrf
-                                <button title="Enviar Informe">
+                                <button class="enviar" title="Enviar Informe">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -151,40 +142,14 @@
                         </td>
                     </tr>
                 @endforeach
-              
+
 
             </tbody>
         </table>
     </div>
 
-   
-
-     <!--
-    <script type="text/javascript">
-        //Ventana modal para confirmación de eliminar informe
-       
-        document.getElementById("eliminarInforme").addEventListener('click', function(e) {
-
-            e.preventDefault();
-
-            Swal.fire({
-                title: '¿Está seguro?',
-                text: "!Esta acción es irreversible!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, bórralo!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    this.submit();
-
-                }
-            })
-
-        })
-        </script>
-    -->
+    <div>
+        {{$listadoInformes->links('pagination::tailwind')}}
+    </div>
     
 @endsection

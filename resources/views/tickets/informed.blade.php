@@ -2,7 +2,7 @@
 
 @section('titule')
     <div class="container p-3 bg-blue-300 flex justify-center gap-3 ">
-        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Total de Tickets: {{ $listadoTickets->count() }}
+        Empleado: {{ $user->nombre . ' ' . $user->apellidos }} . Tickets Informados: {{ $listadoTickets->count() }}
     </div>
 @endsection
 
@@ -56,6 +56,10 @@
             </tbody>
         </table>
 
+        <div>
+            {{$listadoTickets->links('pagination::tailwind')}}
+        </div>
+
         <!-- Modal ampliación imagen-->
 
         <div id="modalImagen" tabindex="-1"
@@ -87,7 +91,6 @@
                 </div>
             </div>
         </div>
-
 
 
     </div>

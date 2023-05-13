@@ -39,7 +39,8 @@
         </table>
     </div>
 
-    <form action="{{ route('admin.check', ['user' => auth()->user()->usuario, 'informe' => $informe->id]) }}" method="post">
+    <form action="{{ route('admin.check', ['user' => auth()->user()->usuario, 'informe' => $informe->id]) }}" method="post"
+        id="guardarInforme" >
 
         @method('put')
         @csrf
@@ -73,7 +74,7 @@
 
             <nav class="flex items-center ml-10">
                 <input type="submit" value="Guardar"
-                    class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
+                    class="guardar bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
 
                 <a href="{{ route('admin.pending', ['user' => auth()->user()->usuario]) }}"
                     class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
@@ -83,4 +84,6 @@
         </div>
 
     </form>
+
+ 
 @endsection

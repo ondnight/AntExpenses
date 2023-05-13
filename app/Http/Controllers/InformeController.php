@@ -21,7 +21,7 @@ class InformeController extends Controller
         
         $listadoInformes = Informe::where('user_id', '=', $user->id)
                                     ->where('estado','=','Pendiente')
-                                    ->get();
+                                    ->paginate(5);
 
 
         return view(
@@ -112,7 +112,7 @@ class InformeController extends Controller
     {
         $listadoInformes = Informe::where('user_id', '=', $user->id)
         ->where('estado','=','Enviado')
-        ->get();
+        ->paginate(5);
 
         return view(
             'informes.sent',

@@ -24,7 +24,7 @@ class TicketController extends Controller
         //consultamos en la bbdd tickets del usuario
         $listadoTickets = Ticket::where('user_id', '=', $user->id)
         ->where('estado','=','Pendiente')
-        ->get();
+        ->paginate(5);
 
         return view(
             'tickets.index',
@@ -161,7 +161,7 @@ class TicketController extends Controller
     {
         $listadoTickets = Ticket::where('estado','=','Informado')
                                     ->where('user_id','=',$user->id)
-                                    ->get();
+                                    ->paginate(5);
 
         
         return view(
