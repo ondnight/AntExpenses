@@ -81,8 +81,7 @@
 
                                 @method('delete')
                                 @csrf
-                                <button class="borrar"  title="Borrar"
-                                    type="submit">
+                                <button class="borrar" title="Borrar" onclick="return confirm('¿Esta seguro de eliminarlo?');" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -101,7 +100,7 @@
         </table>
 
         <div>
-            {{$listadoTickets->links('pagination::tailwind')}}
+            {{ $listadoTickets->links('pagination::tailwind') }}
         </div>
 
         <!-- Modal ampliación imagen-->
@@ -166,4 +165,5 @@
     </script>
 
     
+  
 @endsection

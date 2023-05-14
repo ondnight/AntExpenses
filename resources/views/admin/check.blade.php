@@ -73,7 +73,7 @@
         <div>
 
             <nav class="flex items-center ml-10">
-                <input type="submit" value="Guardar"
+                <input type="submit" value="Guardar" onclick="return confirm('¿Esta seguro de que desea finalizar la evaluación?');"
                     class="guardar bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold m-3 p-3 text-white rounded-lg">
 
                 <a href="{{ route('admin.pending', ['user' => auth()->user()->usuario]) }}"
