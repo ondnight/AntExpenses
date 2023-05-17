@@ -69,7 +69,12 @@ Regístrate en Ant Expenses
                 <input class="border p-3 w-full rounded-lg mb-2 " type="password" name="password_confirmation"
                     id="password_confirmation" placeholder="Repite tu password">
             </div>
-
+            <div>
+                <label for="codigoAdministrador"
+                    class="mb-2 block uppercase text-gray-500 font-bold">¿Eres supervisor?</label>
+                <input class="border p-3 w-full rounded-lg mb-2 " type="text" name="codigoAdministrador"
+                    id="codigoAdministrador" placeholder="Introduce tu código de alta como supervisor">
+            </div>
             <input type="submit" value="Crear Cuenta"
                 class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
         </form>

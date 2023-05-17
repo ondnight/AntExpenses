@@ -26,14 +26,39 @@ class RegisterController extends Controller
         
         ]);
 
-        User::create([
-            'nombre'=>$request->nombre,
-            'apellidos'=>$request->apellidos,
-            'usuario'=>Str::slug($request->usuario), //convierte el username a url, para quitar mayusculas, espacios...
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password), // con la funcion hash protegemos el password en la bbdd
-            'isadmin'=>'0'
-        ]);
+        //validación del tipo de usuario
+
+        $codigoAdministrador = 123456789;
+
+        if($request->codigoAdministrador == '')
+        {
+            User::create([
+                'nombre'=>$request->nombre,
+                'apellidos'=>$request->apellidos,
+                'usuario'=>Str::slug($request->usuario), //convierte el username a url, para quitar mayusculas, espacios...
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password), // con la funcion hash protegemos el password en la bbdd
+                'isadmin'=>'0'
+            ]);
+        }
+        elseif($request->codigoAdministrador == $codigoAdministrador)
+        {
+            User::create([
+                'nombre'=>$request->nombre,
+                'apellidos'=>$request->apellidos,
+                'usuario'=>Str::slug($request->usuario), //convierte el username a url, para quitar mayusculas, espacios...
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password), // con la funcion hash protegemos el password en la bbdd
+                'isadmin'=>'1'
+            ]);
+        }
+        else
+            {
+                session()->flash('mensajeError','¡El código de supervisor no es correcto!');
+                return view('auth.register');
+            }
+
+       
 
         //autenticacion de usuario
         auth()->attempt($request->only('email','password'));
