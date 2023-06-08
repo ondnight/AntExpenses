@@ -20,7 +20,9 @@
         <div class="container mx-auto flex justify-between items-baseline">
             <div class=" w-56 h-32">
                 <div class=" px-5">
+                    <a href="/">
                     <img class="w-max h-32" src="{{ asset('img/ant_logo.svg') }}" alt="Logo">
+                </a>
                 </div>
             </div>
 
@@ -30,6 +32,13 @@
 
                 @auth
                     <nav class="flex gap-4 items-center">
+                        <a href="{{route('posts.index',['user' => auth()->user()->usuario])}}"
+                            class="flex items-center gap-2 bg-white border p-2 hover:bg-gray-300 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                              </svg> 
+                            Mi perfil
+                        </a>
 
                         <a href="{{route('tickets.index',['user' => auth()->user()->usuario])}}"
                             class="flex items-center gap-2 bg-white border hover:bg-gray-300 p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"><svg
@@ -72,7 +81,7 @@
                     <nav class="flex gap-2 items-strech">
 
                         <a href="{{ route('register') }}"
-                            class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
+                            class="flex items-center gap-2 bg-white hover:bg-blue-300 border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
                             Registrar
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
@@ -81,7 +90,8 @@
                             </svg>
                         </a>
                         <a href="{{ route('login') }}"
-                            class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">Login
+                            class="flex items-center gap-2 bg-white hover:bg-blue-300 border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
+                            Login
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"

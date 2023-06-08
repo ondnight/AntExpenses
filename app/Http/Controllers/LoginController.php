@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         //controlamos si los datos no son correctos, volvemos y mostramos el mensaje en la vista almacenado en un session
         if(!auth()->attempt($request->only('email','password'),$request->remember)){
-            return back()->with('mensaje','Credenciales incorrectas');
+            return back()->with('mensajeError','Credenciales incorrectas');
         }
 
         session()->flash('mensaje','¡Login Correcto!');
