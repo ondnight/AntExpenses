@@ -21,7 +21,7 @@ Regístrate en Ant Expenses
             <!-- prevención de ataques cross site request forgery -->
             <div>
                 <label for="nombre" class="mb-2 block uppercase text-gray-500 font-bold">Nombre</label>
-                <input class="border p-3 w-full rounded-lg mb-2 @error('name') border-red-500 @enderror" type="text"
+                <input class="border p-3 w-full rounded-lg mb-2 @error('nombre') border-red-500 @enderror" type="text"
                     name="nombre" id="nombre" placeholder="Indica tu nombre" value={{ old('nombre') }}>
                 <!--podemos llamar al helper error para aplicar una clase en caso de error-->
                 <!-- con el helper old podemos mantener el nombre que ya ha escrito el usuario aunque de error-->
@@ -31,7 +31,7 @@ Regístrate en Ant Expenses
             @enderror
             <div>
                 <label for="apellidos" class="mb-2 block uppercase text-gray-500 font-bold">Apellidos</label>
-                <input class="border p-3 w-full rounded-lg mb-2 @error('name') border-red-500 @enderror" type="text"
+                <input class="border p-3 w-full rounded-lg mb-2 @error('apellidos') border-red-500 @enderror" type="text"
                     name="apellidos" id="apellidos" placeholder="Indica tus apellidos" value={{ old('apellidos') }}>
             </div>
             @error('apellidos')
