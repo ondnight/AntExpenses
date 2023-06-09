@@ -31,14 +31,7 @@
                 @error('apellidos')
                     <p class="text-red-500 my-2 rounded-lg text-sm p-2 text-center-left">{{ $message }}</p>
                 @enderror
-                <div>
-                    <label for="usuario" class="mb-2 block uppercase text-gray-500 font-bold">Nombre de Usuario</label>
-                    <input class="border p-3 w-full rounded-lg mb-2  type="text" name="usuario" id="usuario"
-                        value="{{ $user->usuario }}">
-                </div>
-                @error('usuario')
-                    <p class="text-red-500 my-2 rounded-lg text-sm p-2 text-center-left">{{ $message }}</p>
-                @enderror
+                
                 <div>
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
                     <input class="border p-3 w-full rounded-lg mb-2  type="email" name="email" id="email"

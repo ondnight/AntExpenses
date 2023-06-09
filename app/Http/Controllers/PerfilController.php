@@ -33,8 +33,6 @@ class PerfilController extends Controller
             'nombre' => ['required', 'min:2', 'max:20'],
             //campo requerido y minimo 5 caracteres. En la vista, llamamos al mensaje con {{$message}}
             'apellidos' => ['required', 'min:2', 'max:40'],
-            'usuario' => ['required', 'unique:users,usuario,' . auth()->user()->id, 'min:3', 'max:20'],
-            // debe ser único en la tabla users
             'email' => ['required', 'unique:users,email,' . auth()->user()->id, 'email', 'max:60'],
             // con el campo email obligamos a que sea un email lo que introduce el usuario
         ]);
@@ -43,7 +41,6 @@ class PerfilController extends Controller
 
         $usuario->nombre = $request->nombre;
         $usuario->apellidos = $request->apellidos;
-        $usuario->usuario = $request->usuario;
         $usuario->email = $request->email;
 
 
